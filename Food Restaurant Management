@@ -39,8 +39,8 @@ node *head, *list;
 
 int main()
 {
-    system("title *********************Program by Hasib***********************");
-    system("mode con: cols=80 lines=30");
+    system("title *******************Food Restaurant Management***********************");
+    system("mode con: cols=60 lines=20");
 
     loadingbar();
     cls();
@@ -561,47 +561,61 @@ psmenu2:
         goto foodlist;
     }
 }
+
+
 void cls(){
     system("cls");
 }
+
+
 void echo(char print[]){
     printf("%s",print);
 }
+
+
 void br(int line){
     for(int i=0; i<line; i++){
         printf("\n");
     }
 }
+
+
 void pre(int tab){
     for(int i=0; i<tab; i++){
         printf("\t");
     }
 }
+
+
 void span(int space){
     for(int i=0; i<space; i++){
         printf(" ");
     }
 }
+
+
 void main_menu(){
     cls();
-    br(5);
-    pre(3);
+    br(2);
+    pre(2.5);
     echo("===> 1. Food List");
-    Sleep(400);
+    Sleep(200);
     br(2);
-    pre(3);
+    pre(2.5);
     echo("===> 2. Admin Panel");
-    Sleep(400);
+    Sleep(200);
     br(2);
-    pre(3);
+    pre(2.5);
     echo("===> 3. Exit");
-    Sleep(400);
+    Sleep(200);
     br(2);
-    pre(3);
-    echo("=> 4. Admin Panel");
-    Sleep(400);
+    pre(2.5);
+    echo("===> 4. Admin Panel");
+    Sleep(200);
     br(1);
 }
+
+
 void insertend(int data, char foodname[25], int quantity, float price){
     node *temp;
     temp=(node *)malloc(sizeof(node));
@@ -621,6 +635,8 @@ void insertend(int data, char foodname[25], int quantity, float price){
         head->next = temp;
     }
 }
+
+
 void insertfirst(int data, char foodname[25], int quantity, float price){
     node *temp;
     temp=(node *)malloc(sizeof(node));
@@ -632,6 +648,8 @@ void insertfirst(int data, char foodname[25], int quantity, float price){
     head = temp;
     list = head ;
 }
+
+
 void insertmid(int pos, int data, char foodname[25], int quantity, float price){
     node *temp;
     temp=(node *)malloc(sizeof(node));
@@ -645,6 +663,8 @@ void insertmid(int pos, int data, char foodname[25], int quantity, float price){
     temp->next = head->next;
     head->next = temp ;
 }
+
+
 void deletefood(int serial){
     node *temp;
     temp=(node *)malloc(sizeof(node));
@@ -684,6 +704,8 @@ void deletefood(int serial){
         list=head;
     }
 }
+
+
 void updatefood(int udata, int uquantity){
     node *temp;
     temp = list;
@@ -694,6 +716,8 @@ void updatefood(int udata, int uquantity){
         temp->quantity = uquantity;
     }
 }
+
+
 int countitem(){
     node *temp;
     temp = list;
@@ -711,38 +735,35 @@ int countitem(){
 
     return countitem;
 }
+
+
 void foodlist(){
-    ccolor(26);
-    printf("\n\t\t");
+    system("mode con: cols=60 lines=30");
+    ccolor(6);
+    printf("\n");
     ccolor(240);
-    printf("______________________________________________________ ");
-    ccolor(26);
-    printf("\n\t\t");
+    printf("____________________________________________________________\n");
     ccolor(240);
-    printf("|  Food No.  |   FooD Name   |  Price  |   In Stock   |");
-    ccolor(26);
-    printf("\n\t\t");
+    printf("|   Food No.  |   FooD Name   |   Price   |    In Stock    |\n");
     ccolor(240);
-    printf("-------------------------------------------------------");
-    ccolor(26);
+    printf("------------------------------------------------------------\n");
+    ccolor(6);
     node *temp;
     temp = list;
     while(temp != NULL){
-        ccolor(26);
-        printf("\n\t\t");
         ccolor(62);
-        printf("|     %d      |    %s  |    %0.2f   |    %d    |",temp->data,temp->foodname, temp->price, temp->quantity);
-        ccolor(26);
-        printf("\n\t\t");
+        printf("|     %4d     |   %12s  |   %6.2f   |    %4d    |\n",temp->data,temp->foodname, temp->price, temp->quantity);
         ccolor(62);
-        printf("-------------------------------------------------------");
+        printf("------------------------------------------------------------\n");
         temp = temp->next ;
         Sleep(100);
     }
-    ccolor(26);
+    ccolor(6);
 }
+
+
 void order_view(int order, int quantity, int or_no){
-    ccolor(26);
+    ccolor(6);
     node *temp;
     temp = list;
     while(temp->data != order){
@@ -750,97 +771,83 @@ void order_view(int order, int quantity, int or_no){
     }
     if(temp->data == order){
         ccolor(26);
-        printf("\n\t\t");
+        printf("\n");
         ccolor(62);
-        printf("|     %d      |    %s  |     %d     |     %d     |",or_no,temp->foodname,quantity,temp->quantity);
+        printf("|     %4d     |   %12s  |   %6.2f   |    %4d    |\n",or_no,temp->foodname,quantity,temp->quantity);
         ccolor(26);
-        printf("\n\t\t");
         ccolor(62);
-        printf("-------------------------------------------------------");
+        printf("------------------------------------------------------------\n");
         Sleep(100);
     }
-    ccolor(26);
+    ccolor(6);
 }
+
+
 void ccolor(int clr){
     HANDLE  hConsole;
     hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     SetConsoleTextAttribute(hConsole, clr);
 }
+
+
 void pwellcome(){
-    ccolor(26);
-    char welcome[50]="WELCOME";
-    char welcome2[50]=" TO";
-    char welcome3[50]=" FOOD ORDER";
-    char welcome4[50]=" MANAGEMENT SYSTEM";
-    printf("\n\n\n\n\n\t\t\t");
-    for(int wlc=0; wlc<strlen(welcome); wlc++){
-        ccolor(120+(wlc*9));
-        printf(" %c",welcome[wlc]);
-        Sleep(200);
+    ccolor(6);
+    char welcome1[122]="                                                            \n                          WELCOME                           ";
+    char welcome2[200]="                                                            \n                             TO                             \n                                                            ";
+    char welcome3[122]="                FOOD ORDER MANAGEMENT SYSTEM                \n                                                            ";
+    printf("\n\n\n");
+    for(int i=0; i<strlen(welcome1); i++){
+        ccolor(120);
+        printf("%c",welcome1[i]);
+        if((welcome1[i] >= 'A') && (welcome1[i] <= 'Z'))
+            Sleep(100);
     }
-    ccolor(26);
-    printf("\n\n\t\t\t\t ");
-    for(int wlc2=0; wlc2<strlen(welcome2) ; wlc2++){
-        ccolor(160+(wlc2*9));
-        printf(" %c",welcome2[wlc2]);
-        Sleep(200);
+    ccolor(6);
+    for(int i=0; i<strlen(welcome2) ; i++){
+        ccolor(200);
+        printf("%c",welcome2[i]);
+        if((welcome2[i] >= 'A') && (welcome2[i] <= 'Z'))
+            Sleep(100);
     }
-    ccolor(26);
-    printf("\n\n\n\t\t\t ");
-    for(int wlc3=0; wlc3<strlen(welcome3) ; wlc3++){
-        if(welcome3[wlc3]!='D'){
-            ccolor(121+(wlc3*4));
-            printf(" %c",welcome3[wlc3]);
-        }
-        else{
-            ccolor(11);
-            printf(" %c",welcome3[wlc3]);
-        }
-        Sleep(200);
+    ccolor(6);
+    for(int i=0; i<strlen(welcome3) ; i++){
+        ccolor(120);
+        printf("%c",welcome3[i]);
+        if((welcome3[i] >= 'A') && (welcome3[i] <= 'Z'))
+            Sleep(100);
     }
-    ccolor(26);
-    printf("\n\n\n\t\t\t\t ");
-    for(int wlc3=0; wlc3<strlen(welcome4) ; wlc3++){
-        if(welcome4[wlc3]!='A' && welcome4[wlc3]!='E'){
-            ccolor(121+(wlc3*4));
-            printf(" %c",welcome4[wlc3]);
-        }
-        else{
-            ccolor(11);
-            printf(" %c",welcome4[wlc3]);
-        }
-        Sleep(200);
-    }
-    ccolor(26);
+    ccolor(6);
+    sleep(1);
 }
+
+
 void loadingbar(void){
-    for (int i=15; i<=100; i+=5){
+    for (int i=1; i<=100; i+=1){
         cls();
-        ccolor(26);
-        printf("\n\n\n\n\n\n\n\t\t\t\t");
-        printf("%d %% Loading...\n\n\t\t",i);
+        ccolor(6);
+        printf("\n\n\n\n\n\n\n\n\t\t\t");
+        printf("%d %% Loading...\n\n\n\n\n\n\n\n    ",i);
         printf("");
         for (int j=0; j<i; j+=2){
-            ccolor(160+j);
+            ccolor(120);
             printf(" ");
-            ccolor(26);
+            ccolor(6);
         }
-        Sleep(100);
-        if(i==90 || i==50 || i==96 || i==83){
-            Sleep(100);
-        }
+        Sleep(10);
     }
 }
+
+
 void backuploader(void){
     for (int i=15; i<=100; i+=5){
         cls();
-        ccolor(26);
+        ccolor(6);
         printf("\n\n\n\n\n\n\n\t\t\t\t");
         printf("%d %% Backing UP DATA...\n\n\t\t",i);
         for (int j=0; j<i; j+=2){
             ccolor(120+j);
             printf(" ");
-            ccolor(26);
+            ccolor(6);
         }
         Sleep(50);
         if(i==90 || i==50 || i==96 || i==83){
@@ -848,9 +855,13 @@ void backuploader(void){
         }
     }
 }
+
+
 void middle1(void){
     printf("\n\n\n\n\n\n\n");
 }
+
+
 void middtab1(void){
     printf("\t\t\t\t\t");
 }
